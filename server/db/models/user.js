@@ -24,6 +24,11 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  type: {
+    type: Sequelize.ENUM({
+      values: ['employee', 'company-admin', 'super-admin']
+    }),
+  },
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
@@ -31,9 +36,6 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('salt');
     },
-  },
-  googleId: {
-    type: Sequelize.STRING,
   },
 });
 
