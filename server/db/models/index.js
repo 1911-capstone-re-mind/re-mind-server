@@ -1,14 +1,14 @@
-const User = require('./user');
-const Company = require('./company');
-const Activity = require('./activity');
-const UserActivity = require('./userActivity');
+const User = require("./user");
+const Company = require("./company");
+const Activity = require("./activity");
+const UserActivity = require("./userActivity");
 
 //associations
 User.belongsTo(Company);
 Company.hasMany(User);
 
-User.belongsToMany(Activity, { through: 'user_activity' });
-Activity.belongsToMany(User, { through: 'user_activity' });
+User.belongsToMany(Activity, { through: "user_activity" });
+Activity.belongsToMany(User, { through: "user_activity" });
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -20,5 +20,5 @@ module.exports = {
   User,
   Company,
   Activity,
-  UserActivity,
+  UserActivity
 };
