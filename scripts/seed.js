@@ -4,7 +4,7 @@ const { Activity, User, Company } = require("../server/db/models");
 const activitiesSeed = [
   {
     name: "posture",
-    description:
+    description: 
       "Good posture is about more than standing up straight so you can look your best. It is an important part of your long-term health. Making sure that you hold your body the right way can prevent pain, injuries, and other health problems.",
     frequency: 30,
     duration: 0
