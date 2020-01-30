@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./server/**/**/*.spec.js\" ",
     "start-dev": "nodemon ./server/index.js",
-    "seed": "node seed.js"
+    "seed": "node ./scripts/seed.js"
   },
   "author": "",
   "license": "ISC",

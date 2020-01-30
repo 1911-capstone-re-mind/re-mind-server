@@ -1,7 +1,5 @@
 const db = require("../server/db");
-const { Activity } = require("../server/db/models");
-const User = require("../server/db/models/user");
-const Company = require("../server/db/models/company");
+const { Activity, User, Company } = require("../server/db/models");
 
 const activitiesSeed = [
   {
@@ -41,7 +39,7 @@ const activitiesSeed = [
   }
 ];
 
-const users = [
+const usersSeed = [
   {
     email: "vishal@gmail.com",
     password: "vishal",
@@ -72,7 +70,7 @@ const users = [
   }
 ];
 
-const companies = [
+const companiesSeed = [
   {
     name: "Tesla"
   },
@@ -84,18 +82,12 @@ const companies = [
 const seed = async () => {
   await db.sync({ force: true });
   const activities = await Activity.bulkCreate(activitiesSeed);
-  await Promise.all(
-    users.map(user => {
-      return User.create(user);
-    })
-  );
-  await Promise.all(
-    companies.map(company => {
-      return Company.create(company);
-    })
-  );
+  const users = await User.bulkCreate(usersSeed);
+  const companies = await Company.bulkCreate(companiesSeed);
 
   console.log(`${activities.length} activities created`);
+  console.log(`${users.length} users created`);
+  console.log(`${companies.length} companies created`);
 };
 
 const runSeed = async () => {
