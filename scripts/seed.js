@@ -38,38 +38,6 @@ const activitiesSeed = [
     duration: 0
   }
 ];
-
-const usersSeed = [
-  {
-    email: "vishal@gmail.com",
-    password: "vishal",
-    firstName: "Vishal",
-    lastName: "Patel",
-    type: "employee"
-  },
-  {
-    email: "emily@gmail.com",
-    password: "emily",
-    firstName: "Emily",
-    lastName: "Simpson",
-    type: "company-admin"
-  },
-  {
-    email: "marius@gmail.com",
-    password: "marius",
-    firstName: "Marius",
-    lastName: "Maries",
-    type: "employee"
-  },
-  {
-    email: "lou@gmail.com",
-    password: "lou",
-    firstName: "Lou",
-    lastName: "Takahashi",
-    type: "super-admin"
-  }
-];
-
 const companiesSeed = [
   {
     name: "Tesla"
@@ -79,11 +47,46 @@ const companiesSeed = [
   }
 ];
 
+const usersSeed = [
+  {
+    email: "vishal@gmail.com",
+    password: "vishal",
+    firstName: "Vishal",
+    lastName: "Patel",
+    type: "employee",
+    companyId: 1
+  },
+  {
+    email: "emily@gmail.com",
+    password: "emily",
+    firstName: "Emily",
+    lastName: "Simpson",
+    type: "company-admin",
+    companyId: 2
+  },
+  {
+    email: "marius@gmail.com",
+    password: "marius",
+    firstName: "Marius",
+    lastName: "Maries",
+    type: "employee",
+    companyId: 2
+  },
+  {
+    email: "lou@gmail.com",
+    password: "lou",
+    firstName: "Lou",
+    lastName: "Takahashi",
+    type: "super-admin",
+    companyId: 1
+  }
+];
+
 const seed = async () => {
   await db.sync({ force: true });
   const activities = await Activity.bulkCreate(activitiesSeed);
-  const users = await User.bulkCreate(usersSeed);
   const companies = await Company.bulkCreate(companiesSeed);
+  const users = await User.bulkCreate(usersSeed);
   for (let user of users) {
     await user.addActivity(activities[0], {
       though: {
@@ -91,7 +94,7 @@ const seed = async () => {
         duration: 20,
         completed_sessions: 1
       }
-    })
+    });
   }
 
   console.log(`${activities.length} activities created`);
