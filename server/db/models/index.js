@@ -7,8 +7,8 @@ const UserActivity = require("./userActivity");
 User.belongsTo(Company);
 Company.hasMany(User);
 
-User.belongsToMany(Activity, { through: "user_activity" });
-Activity.belongsToMany(User, { through: "user_activity" });
+User.belongsToMany(Activity, { through: "user_activities" });
+Activity.belongsToMany(User, { through: "user_activities" });
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
