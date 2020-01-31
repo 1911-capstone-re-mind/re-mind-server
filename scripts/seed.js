@@ -4,7 +4,7 @@ const { Activity, User, Company } = require("../server/db/models");
 const activitiesSeed = [
   {
     name: "posture",
-    description: 
+    description:
       "Good posture is about more than standing up straight so you can look your best. It is an important part of your long-term health. Making sure that you hold your body the right way can prevent pain, injuries, and other health problems.",
     frequency: 30,
     duration: 0
@@ -84,6 +84,15 @@ const seed = async () => {
   const activities = await Activity.bulkCreate(activitiesSeed);
   const users = await User.bulkCreate(usersSeed);
   const companies = await Company.bulkCreate(companiesSeed);
+  for (let user of users) {
+    await user.addActivity(activities[0], {
+      though: {
+        time_preference: 30,
+        duration: 20,
+        completed_sessions: 1
+      }
+    })
+  }
 
   console.log(`${activities.length} activities created`);
   console.log(`${users.length} users created`);
