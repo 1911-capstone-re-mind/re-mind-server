@@ -3,5 +3,7 @@ const app = require('../');
 const request = require('supertest')(app)
 
 describe('User authentication', () => {
+  describe('User creation', () => {
 
+  })
 })
