@@ -35,7 +35,7 @@ const activitiesSeed = [
     description:
       "Mindfulness techniques allow us to calm down and to be more receptive than reactive. Whether learning to meditate or merely to tune in with ourselves at various times throughout our day, mindfulness enhances your ability to feel more integrated and to act with integrity. We improve our ability to focus our attention. We are better able to slow the racing thoughts that lead us to engage in limiting or self-sabotaging behaviors. We strengthen our resilience and enhance our capacity to experience the joys of everyday life.",
     frequency: 30,
-    duration: 0
+    duration: 45
   }
 ];
 
@@ -85,13 +85,13 @@ const seed = async () => {
   const users = await User.bulkCreate(usersSeed);
   const companies = await Company.bulkCreate(companiesSeed);
   for (let user of users) {
-    await user.addActivity(activities[0], {
-      though: {
+    await user.addActivity(activities[1], {
+      through: {
         time_preference: 30,
         duration: 20,
         completed_sessions: 1
       }
-    })
+    });
   }
 
   console.log(`${activities.length} activities created`);
