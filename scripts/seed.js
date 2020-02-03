@@ -138,8 +138,9 @@ const userActivitiesSeed = [
 
 const seed = async () => {
   await db.sync({ force: true });
-  const activities = await Activity.bulkCreate(activitiesSeed);
   const companies = await Company.bulkCreate(companiesSeed);
+  const users = await User.bulkCreate(usersSeed);
+  const activities = await Activity.bulkCreate(activitiesSeed);
   const userPrefs = await UserPreferences.bulkCreate(userPrefsSeed);
   const userActivities = await UserActivity.bulkCreate(userActivitiesSeed);
   // for (let user of users) {
