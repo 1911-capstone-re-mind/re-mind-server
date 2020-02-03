@@ -86,7 +86,7 @@ const seed = async () => {
   const companies = await Company.bulkCreate(companiesSeed);
   for (let user of users) {
     await user.addActivity(activities[0], {
-      though: {
+      through: {
         time_preference: 30,
         duration: 20,
         completed_sessions: 1
