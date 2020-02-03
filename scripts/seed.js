@@ -150,6 +150,7 @@ const seed = async () => {
   //   });
   // }
 
+
   console.log(`${activities.length} activities created`);
   console.log(`${users.length} users created`);
   console.log(`${companies.length} companies created`);
