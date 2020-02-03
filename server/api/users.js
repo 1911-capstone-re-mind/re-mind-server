@@ -27,7 +27,7 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
-router.get("/users/:companyId", async (req, res, next) => {
+router.get("/:companyId", async (req, res, next) => {
   try {
     const companyUsers = await User.findAll({
       where: { companyId: req.param.companyId },
@@ -39,16 +39,5 @@ router.get("/users/:companyId", async (req, res, next) => {
   }
 });
 
-router.get("/:userId", async (req, res, next) => {
-  try {
-    const singleUserActivity = await User.findOne({
-      where: { userId: req.param.id, type: "super-admin" },
-      include: [{ model: UserActivity }]
-    });
-    res.json(singleUserActivity);
-  } catch (err) {
-    next(err);
-  }
-});
 
 module.exports = router;
