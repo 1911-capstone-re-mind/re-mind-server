@@ -1,5 +1,11 @@
 const db = require("../server/db");
-const { Activity, User, Company } = require("../server/db/models");
+const {
+  Activity,
+  User,
+  Company,
+  UserPreferences,
+  UserActivity
+} = require("../server/db/models");
 
 const activitiesSeed = [
   {
@@ -35,7 +41,7 @@ const activitiesSeed = [
     description:
       "Mindfulness techniques allow us to calm down and to be more receptive than reactive. Whether learning to meditate or merely to tune in with ourselves at various times throughout our day, mindfulness enhances your ability to feel more integrated and to act with integrity. We improve our ability to focus our attention. We are better able to slow the racing thoughts that lead us to engage in limiting or self-sabotaging behaviors. We strengthen our resilience and enhance our capacity to experience the joys of everyday life.",
     frequency: 30,
-    duration: 0
+    duration: 45
   }
 ];
 
@@ -79,24 +85,77 @@ const companiesSeed = [
   }
 ];
 
+const userPrefsSeed = [
+  {
+    userId: 1,
+    ActivityId: 1,
+    frequency: 30
+  },
+  {
+    userId: 1,
+    ActivityId: 2,
+    frequency: 60,
+    duration: 1
+  },
+  {
+    userId: 1,
+    ActivityId: 3,
+    frequency: 20,
+    duration: 20
+  },
+  {
+    userId: 1,
+    ActivityId: 4,
+    frequency: 30
+  }
+];
+
+const userActivitiesSeed = [
+  {
+    userId: 1,
+    activityId: 1,
+    completed_sessions: 2
+  },
+  {
+    userId: 1,
+    activityId: 2,
+    completed_sessions: 1
+  },
+  {
+    userId: 1,
+    activityId: 3,
+    completed_sessions: 3
+  },
+  {
+    userId: 1,
+    activityId: 4,
+    completed_sessions: 5
+  }
+];
+
 const seed = async () => {
   await db.sync({ force: true });
   const activities = await Activity.bulkCreate(activitiesSeed);
   const users = await User.bulkCreate(usersSeed);
   const companies = await Company.bulkCreate(companiesSeed);
-  for (let user of users) {
-    await user.addActivity(activities[0], {
-      through: {
-        time_preference: 30,
-        duration: 20,
-        completed_sessions: 1
-      }
-    })
-  }
+  const userPrefs = await UserPreferences.bulkCreate(userPrefsSeed);
+  const userActivities = await UserActivity.bulkCreate(userActivitiesSeed);
+  // for (let user of users) {
+  //   await user.addActivity(activities[1], {
+  //     through: {
+  //       time_preference: 30,
+  //       duration: 20,
+  //       completed_sessions: 1
+  //     }
+  //   });
+  // }
+
 
   console.log(`${activities.length} activities created`);
   console.log(`${users.length} users created`);
   console.log(`${companies.length} companies created`);
+  console.log(`${userPrefs.length} user preferences created`);
+  console.log(`${userActivities.length} user activities created`);
 };
 
 const runSeed = async () => {
