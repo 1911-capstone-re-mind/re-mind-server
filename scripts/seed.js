@@ -44,6 +44,14 @@ const activitiesSeed = [
     duration: 45
   }
 ];
+const companiesSeed = [
+  {
+    name: "Tesla"
+  },
+  {
+    name: "CD Project Red"
+  }
+];
 
 const usersSeed = [
   {
@@ -51,37 +59,32 @@ const usersSeed = [
     password: "vishal",
     firstName: "Vishal",
     lastName: "Patel",
-    type: "employee"
+    type: "employee",
+    companyId: 1
   },
   {
     email: "emily@gmail.com",
     password: "emily",
     firstName: "Emily",
     lastName: "Simpson",
-    type: "company-admin"
+    type: "company-admin",
+    companyId: 2
   },
   {
     email: "marius@gmail.com",
     password: "marius",
     firstName: "Marius",
     lastName: "Maries",
-    type: "employee"
+    type: "employee",
+    companyId: 2
   },
   {
     email: "lou@gmail.com",
     password: "lou",
     firstName: "Lou",
     lastName: "Takahashi",
-    type: "super-admin"
-  }
-];
-
-const companiesSeed = [
-  {
-    name: "Tesla"
-  },
-  {
-    name: "CD Project Red"
+    type: "super-admin",
+    companyId: 1
   }
 ];
 
@@ -136,7 +139,6 @@ const userActivitiesSeed = [
 const seed = async () => {
   await db.sync({ force: true });
   const activities = await Activity.bulkCreate(activitiesSeed);
-  const users = await User.bulkCreate(usersSeed);
   const companies = await Company.bulkCreate(companiesSeed);
   const userPrefs = await UserPreferences.bulkCreate(userPrefsSeed);
   const userActivities = await UserActivity.bulkCreate(userActivitiesSeed);
@@ -149,6 +151,7 @@ const seed = async () => {
   //     }
   //   });
   // }
+
   console.log(`${activities.length} activities created`);
   console.log(`${users.length} users created`);
   console.log(`${companies.length} companies created`);
