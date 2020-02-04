@@ -5,7 +5,7 @@ module.exports = router;
 
 router.put("/prefs/:userId", async (req, res, next) => {
   try {
-    req.body.forEach(async activity => {
+    req.body.map(async activity => {
       const userPref = await UserPreferences.findOne({
         where: {
           userId: activity.userId,
@@ -21,6 +21,7 @@ router.put("/prefs/:userId", async (req, res, next) => {
       }
     });
     //TO DO: send soemthing back here
+    res.json([]);
   } catch (error) {
     next(error);
   }
