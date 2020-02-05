@@ -34,7 +34,7 @@ router.get("/:userId", async (req, res, next) => {
         userId: req.params.userId
       }
     });
-    console.log(prefs);
+    // console.log(prefs);
     res.json(prefs);
   } catch (error) {
     next(error);
