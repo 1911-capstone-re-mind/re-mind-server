@@ -23,7 +23,7 @@ const activitiesSeed = [
     duration: 300000
   },
   {
-    name: "eye strain",
+    name: "vision",
     description:
       "Every 20 minutes, look at something 20 feet away for 20 seconds. The 20/20/20 rule was popularized by Dr. Jeff Anshell, a specialist in “vision ergonomics.”",
     frequency: 1200000,
@@ -98,7 +98,7 @@ const userPrefsSeed = [
   {
     userId: 1,
     activityId: 2,
-    frequency: 3600000,
+    frequency: 60000,
     duration: 60000,
     active: true
   },

@@ -26,21 +26,29 @@ router.get("/:userId", async (req, res, next) => {
 });
 
 router.put("/log", async (req, res, next) => {
-  const activities = req.body
+  const activities = req.body;
   try {
     for (let activity of activities) {
-      await ActivityLog.update({
-        completed_sessions: activity.completed_sessions,
-        month: activity.month,
-        date: activity.date
-      },
-      {
+      const existingActivity = await ActivityLog.findOne({
         where: {
+          month: activity.month,
+          date: activity.date,
           userPreferenceId: activity.userPreferenceId
         }
-      })
+      });
+      if (existingActivity) {
+        existingActivity.completed_sessions = activity.completed_sessions;
+        await existingActivity.save();
+      } else {
+        ActivityLog.create({
+          completed_sessions: activity.completed_sessions,
+          month: activity.month,
+          date: activity.date,
+          userPreferenceId: activity.userPreferenceId
+        });
+      }
     }
-    res.sendStatus(200)
+    res.sendStatus(200);
   } catch (error) {
     next(error);
   }
