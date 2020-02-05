@@ -31,10 +31,9 @@ router.put("/log", async (req, res, next) => {
       },
       {
         where: {
-          id: activity.id
+          userPreferenceId: activity.userPreferenceId
         }
-      }
-      )
+      })
     }
     res.sendStatus(200)
   } catch (error) {
