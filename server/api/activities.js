@@ -32,7 +32,12 @@ router.get("/:userId", async (req, res, next) => {
     const prefs = await UserPreferences.findAll({
       where: {
         userId: req.params.userId
-      }
+      },
+      include: [
+        {
+          model: Activity
+        }
+      ]
     });
     console.log(prefs);
     res.json(prefs);
