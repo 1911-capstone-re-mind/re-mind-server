@@ -24,3 +24,24 @@ router.get("/:userId", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put("/log", async (req, res, next) => {
+  const activities = req.body
+  try {
+    for (let activity of activities) {
+      await ActivityLog.update({
+        completed_sessions: activity.completed_sessions,
+        month: activity.month,
+        date: activity.date
+      },
+      {
+        where: {
+          userPreferenceId: activity.userPreferenceId
+        }
+      })
+    }
+    res.sendStatus(200)
+  } catch (error) {
+    next(error);
+  }
+});
