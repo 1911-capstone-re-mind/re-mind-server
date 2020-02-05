@@ -11,6 +11,7 @@ Company.hasMany(User);
 User.belongsToMany(Activity, { through: "user_preferences" });
 Activity.belongsToMany(User, { through: "user_preferences" });
 
+UserPreferences.belongsTo(Activity);
 ActivityLog.belongsTo(UserPreferences);
 
 /**

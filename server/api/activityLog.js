@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { ActivityLog, UserPreferences } = require("../db/models");
+const { ActivityLog, UserPreferences, Activity } = require("../db/models");
 module.exports = router;
 
 router.get("/:userId", async (req, res, next) => {
@@ -10,7 +10,12 @@ router.get("/:userId", async (req, res, next) => {
           model: UserPreferences,
           where: {
             userId: req.params.userId
-          }
+          },
+          include: [
+            {
+              model: Activity
+            }
+          ]
         }
       ]
     });

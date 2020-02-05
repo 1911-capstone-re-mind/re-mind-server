@@ -92,29 +92,33 @@ const userPrefsSeed = [
   {
     userId: 1,
     activityId: 1,
-    frequency: 30
+    frequency: 1800000,
+    active: true
   },
   {
     userId: 1,
     activityId: 2,
-    frequency: 60,
-    duration: 1
+    frequency: 3600000,
+    duration: 60000,
+    active: true
   },
   {
     userId: 1,
     activityId: 3,
-    frequency: 20,
-    duration: 20
+    frequency: 1200000,
+    duration: 1200000,
+    active: true
   },
   {
     userId: 1,
     activityId: 4,
-    frequency: 30
+    frequency: 1800000,
+    active: true
   },
   {
-    userId: 2,
-    activityId: 4,
-    frequency: 30
+    userId: 1,
+    activityId: 5,
+    active: false
   }
 ];
 

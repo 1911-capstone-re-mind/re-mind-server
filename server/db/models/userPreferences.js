@@ -12,6 +12,10 @@ const UserPreferences = db.define("user_preferences", {
   },
   duration: {
     type: Sequelize.INTEGER
+  },
+  active: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
