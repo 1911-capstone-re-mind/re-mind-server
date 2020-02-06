@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const User = require("../db/index");
-// const Sessions = require('../db/index')
+const { User } = require("../db/models")
+
 module.exports = router;
 
 router.post("/login", async (req, res, next) => {
@@ -44,8 +44,9 @@ router.post("/logout", (req, res) => {
 });
 
 router.get("/me", async (req, res) => {
-  // const sessionId = await Sessions.findOne({where: {sid: req.sid}})
+  // const sessionId = await Sessions.findAll()
+  // console.log("TCL: sessionId", sessionId)
   console.log("\nTCL: req.sessionID", req.session, "\nand req.session from /me\n", req.user)
 // user", user, "\nand ^^
-  res.json(req.session.id);
+  res.json({session: req.session, user: req.user});
 });
