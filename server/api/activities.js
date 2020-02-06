@@ -51,7 +51,9 @@ router.get("/:userId", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const activities = await Activity.findAll();
+    const activities = await Activity.findAll({
+      order: [["id", "ASC"]]
+    });
     res.json(activities);
   } catch (err) {
     next(err);
