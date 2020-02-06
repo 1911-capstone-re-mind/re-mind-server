@@ -1,27 +1,31 @@
 const router = require("express").Router();
-const { Activity } = require("../db/models");
+const { User, Activity } = require("../db/models");
 const { UserPreferences } = require("../db/models");
 module.exports = router;
 
 router.put("/prefs/:userId", async (req, res, next) => {
+  let activities = req.body.activities;
+  let userId = req.body.userId
   try {
-    req.body.map(async activity => {
-      const userPref = await UserPreferences.findOne({
-        where: {
-          userId: activity.userId,
-          activityId: activity.activityId
+    let user = await User.findByPk(userId)
+    for (let activity of activities) {
+      let activityDB = await Activity.findByPk(activity.activityId)
+      await activityDB.addUser(user, {
+        through: {
+          frequency: activity.frequency,
+          duration: activity.duration,
+          active: activity.active
         }
-      });
-      if (userPref) {
-        activity.duration && (userPref.duration = activity.duration);
-        activity.frequency && (userPref.frequency = activity.frequency);
-        await userPref.save();
-      } else {
-        await UserPreferences.create(activity);
-      }
-    });
-    //TO DO: send soemthing back here
-    res.json([]);
+      })
+    }
+    let userPreferences = await UserPreferences.findAll({
+      where: {
+        userId
+      },
+      include: [{model: Activity}]
+    })
+
+    res.json(userPreferences);
   } catch (error) {
     next(error);
   }
@@ -39,7 +43,6 @@ router.get("/:userId", async (req, res, next) => {
         }
       ]
     });
-    console.log(prefs);
     res.json(prefs);
   } catch (error) {
     next(error);
