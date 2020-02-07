@@ -13,7 +13,7 @@ const activitiesSeed = [
     description:
       "Good posture is about more than standing up straight so you can look your best. It is an important part of your long-term health. Making sure that you hold your body the right way can prevent pain, injuries, and other health problems.",
     frequency: 1800000,
-    duration: 5000
+    duration: 0
   },
   {
     name: "movement",
@@ -34,7 +34,7 @@ const activitiesSeed = [
     description:
       "Water is your body's principal chemical component and makes up about 60 percent of your body weight. Your body depends on water to survive. Lack of water can lead to dehydration — a condition that occurs when you don't have enough water in your body to carry out normal functions. Even mild dehydration can drain your energy and make you tired.",
     frequency: 3600000,
-    duration: 5000
+    duration: 0
   },
   {
     name: "mindfulness",
@@ -106,7 +106,7 @@ const userPrefsSeed = [
     userId: 1,
     activityId: 3,
     frequency: 1200000,
-    duration: 1200000,
+    duration: 20000,
     active: true
   },
   {
