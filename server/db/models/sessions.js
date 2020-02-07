@@ -1,16 +1,16 @@
-// const Sequelize = require("sequelize");
-// const db = require("../db");
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-// const Sessions = db.define("Sessions", {
-//   sid: {
-//     type: Sequelize.TEXT
-//   },
-//   expires: {
-//     type: Sequelize.DATE
-//   },
-//   data: {
-//     type: Sequelize.JSON
-//   }
-// });
+const Sessions = db.define("Sessions", {
+  sid: {
+    type: Sequelize.TEXT
+  },
+  expires: {
+    type: Sequelize.DATE
+  },
+  data: {
+    type: Sequelize.TEXT
+  }
+});
 
-// module.exports = Sessions;
+module.exports = Sessions;

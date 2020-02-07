@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { User } = require("../db/models")
+const { User, Sessions } = require("../db/models")
+const { Client } = require('pg')
+const client = new Client()
 
 module.exports = router;
 
@@ -14,12 +16,18 @@ router.post("/login", async (req, res, next) => {
       res.status(401).send("Wrong username and/or password");
     } else {
       req.login(user, err => (err ? next(err) : res.json({user, sessionId: req.sessionID})));
-      console.log("TCL: user", user, "\nand req.sessionID from /login", req.user)
+      console.log("TCL: user", user, "\nand req.sessionID from /login", req.user, 'sessionID:', req.sessionID)
     }
   } catch (err) {
     next(err);
   }
 });
+
+router.post("/auto-login", async (req, res, next) => {
+  const user = await User.findByPk(req.body.id)
+  req.login(user, err => (err ? next(err) : res.json(user)))
+  // res.redirect("/dashboard");
+})
 
 router.post("/signup", async (req, res, next) => {
   try {
@@ -46,7 +54,20 @@ router.post("/logout", (req, res) => {
 router.get("/me", async (req, res) => {
   // const sessionId = await Sessions.findAll()
   // console.log("TCL: sessionId", sessionId)
-  console.log("\nTCL: req.sessionID", req.session, "\nand req.session from /me\n", req.user)
+  // await client.query('')
+  const returnAllFromSessions = await Sessions.findAll()
+  const dataValuesOnly = returnAllFromSessions.map(item => item.dataValues)
+
+  const sidAndUser = dataValuesOnly.map(entry => {
+    const parsedData = JSON.parse(entry.data)
+    return { sid: entry.sid,
+            user: parsedData.passport.user
+    }
+  })
+  // console.log("TCL: returnAllFromSessions", returnAllFromSessions)
+  // console.log("TCL: dataValuesOnly", dataValuesOnly)
+  // console.log("TCL: sidAndUser", sidAndUser)
+  // console.log("\nTCL: req.sessionID", req.session, "\nand req.session from /me\n", req.user)
 // user", user, "\nand ^^
-  res.json({session: req.session, user: req.user});
+  res.send(sidAndUser);
 });

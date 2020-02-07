@@ -58,8 +58,9 @@ const createApp = () => {
     session({
       secret: process.env.SESSION_SECRET || "my best friend is Cody",
       store: sessionStore,
+      name: 'user_session',
       resave: false,
-      saveUninitialized: true
+      saveUninitialized: false
     })
   );
   app.use(passport.initialize());
