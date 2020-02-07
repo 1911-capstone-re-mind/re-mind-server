@@ -106,7 +106,7 @@ const userPrefsSeed = [
     userId: 1,
     activityId: 3,
     frequency: 1200000,
-    duration: 1200000,
+    duration: 20000,
     active: true
   },
   {
