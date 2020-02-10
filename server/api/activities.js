@@ -22,6 +22,7 @@ router.put("/prefs/:userId", async (req, res, next) => {
       where: {
         userId
       },
+      order: [['id', 'ASC']],
       include: [{model: Activity}]
     })
 
@@ -63,6 +64,7 @@ router.get("/:userId", async (req, res, next) => {
       where: {
         userId: req.params.userId
       },
+      order: [['id', 'ASC']],
       include: [
         {
           model: Activity
