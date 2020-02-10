@@ -2,7 +2,7 @@ const router = require("express").Router();
 module.exports = router;
 
 router.use("/users", require("./users"));
-router.use("/activities", require("./activities"));
+router.use("/activities",  require("./activities"));
 router.use("/activity-log", require("./activityLog"));
 
 router.use((req, res, next) => {
@@ -10,3 +10,9 @@ router.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
+
+// const isLoggedIn = (req, res, next) => {
+//   if (!req.user) {
+
+//   }
+// }

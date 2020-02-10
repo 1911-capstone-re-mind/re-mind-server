@@ -34,6 +34,7 @@ passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await db.models.user.findByPk(id);
+    console.log("TCL: user in main index.js:\n", user)
     done(null, user);
   } catch (err) {
     done(err);
@@ -53,6 +54,9 @@ const createApp = () => {
   // compression middleware
   app.use(compression());
 
+  // static file-serving middleware
+  app.use(express.static(path.join(__dirname, "..", "public")));
+
   // session middleware with passport
   app.use(
     session({
@@ -70,8 +74,6 @@ const createApp = () => {
   app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
 
-  // static file-serving middleware
-  app.use(express.static(path.join(__dirname, "..", "public")));
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
