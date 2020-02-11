@@ -23,7 +23,6 @@ router.get("/:userId", async (req, res, next) => {
       where: { userId: req.param.id, type: "employee" },
       include: [{ model: UserActivity }]
     });
-    console.log("TCL: singleUserActivity", singleUserActivity)
     res.json(singleUserActivity);
   } catch (err) {
     next(err);
