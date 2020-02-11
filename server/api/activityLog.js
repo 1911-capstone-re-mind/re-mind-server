@@ -37,7 +37,7 @@ router.put("/log", async (req, res, next) => {
         }
       });
       if (existingActivity) {
-        existingActivity.completed_sessions = activity.completed_sessions;
+        existingActivity.completed_sessions += activity.completed_sessions;
         await existingActivity.save();
       } else {
         ActivityLog.create({
