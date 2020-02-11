@@ -3,6 +3,7 @@ const Company = require("./company");
 const Activity = require("./activity");
 const ActivityLog = require("./activityLog");
 const UserPreferences = require("./userPreferences");
+const Sessions = require("./sessions")
 
 //associations
 User.belongsTo(Company);
@@ -26,5 +27,6 @@ module.exports = {
   Company,
   Activity,
   ActivityLog,
-  UserPreferences
+  UserPreferences,
+  Sessions
 };
