@@ -53,13 +53,20 @@ const createApp = () => {
   // compression middleware
   app.use(compression());
 
+  // static file-serving middleware
+  app.use(express.static(path.join(__dirname, "..", "public")));
+
   // session middleware with passport
   app.use(
     session({
       secret: process.env.SESSION_SECRET || "my best friend is Cody",
       store: sessionStore,
+      name: 'user_session',
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
+      cookie: {
+        maxAge: (24 * 60 * 60 * 1000)
+      }
     })
   );
   app.use(passport.initialize());
@@ -69,8 +76,6 @@ const createApp = () => {
   app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
 
-  // static file-serving middleware
-  app.use(express.static(path.join(__dirname, "..", "public")));
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
