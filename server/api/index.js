@@ -10,9 +10,3 @@ router.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
-
-// const isLoggedIn = (req, res, next) => {
-//   if (!req.user) {
-
-//   }
-// }
