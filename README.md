@@ -52,7 +52,7 @@ run `npm run start`
 
 This was a two and a half week capstone project for four students at [Fullstack Academy](https://www.fullstackacademy.com) in Chicago. The goal of this project was to challenge ourselves creating an ambitious application using the skills we have learned so far.
 
-This project allowed us to utilize our skills in the web technologies we learned and apply them in a new way. Since operating systems can have many multiple processes unlike a web application, careful design of the application architexture was very important from the beginning. We had to make sure that the many different components of our application communicated together in a reliable way.
+This project allowed us to utilize our skills in the web technologies we learned and apply them in a new way. Since operating systems can have many multiple processes unlike a web application, careful design of the application architexture was very important from the beginning. We had to make sure that the many different components of our application communicated together in a reliable way. We also had the opportunity to use the resources of our machine's operating system to store files and send notifications to the user.
 
 Communication between difference processes was one of the most difficult challenges fo this project. Since we created timers to keep track of reminders and allowed user input, we had to carefully come up with a fail-safe design for the application to prevent race conditions and unexpected behaviors.
 
