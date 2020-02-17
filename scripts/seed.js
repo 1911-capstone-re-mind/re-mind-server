@@ -98,8 +98,8 @@ const userPrefsSeed = [
   {
     userId: 1,
     activityId: 2,
-    frequency: 60000,
-    duration: 60000,
+    frequency: 30 * 60000,
+    duration: 5 * 60000,
     active: true
   },
   {
@@ -118,7 +118,9 @@ const userPrefsSeed = [
   {
     userId: 1,
     activityId: 5,
-    active: false
+    frequency: 120 * 60000,
+    duration: 3 * 60000,
+    active: true
   }
 ];
 
@@ -127,79 +129,139 @@ const activityLogsSeed = [
     userPreferenceId: 1,
     completed_sessions: 2,
     month: 2,
-    date: 1
+    date: 14
   },
   {
     userPreferenceId: 2,
     completed_sessions: 1,
     month: 2,
-    date: 1
+    date: 14
   },
   {
     userPreferenceId: 3,
     completed_sessions: 3,
     month: 2,
-    date: 1
+    date: 14
   },
   {
     userPreferenceId: 4,
     completed_sessions: 5,
     month: 2,
-    date: 1
+    date: 14
   },
   {
     userPreferenceId: 1,
     completed_sessions: 2,
     month: 2,
-    date: 2
+    date: 13
   },
   {
     userPreferenceId: 2,
     completed_sessions: 2,
     month: 2,
-    date: 2
+    date: 13
   },
   {
     userPreferenceId: 3,
     completed_sessions: 3,
     month: 2,
-    date: 2
+    date: 13
   },
   {
     userPreferenceId: 4,
     completed_sessions: 7,
     month: 2,
-    date: 2
+    date: 13
   },
   {
     userPreferenceId: 1,
     completed_sessions: 2,
     month: 2,
-    date: 3
+    date: 12
   },
   {
     userPreferenceId: 2,
     completed_sessions: 2,
     month: 2,
-    date: 3
+    date: 12
   },
   {
     userPreferenceId: 3,
     completed_sessions: 1,
     month: 2,
-    date: 3
+    date: 12
   },
   {
     userPreferenceId: 4,
     completed_sessions: 3,
     month: 2,
-    date: 3
+    date: 12
   },
   {
     userPreferenceId: 5,
     completed_sessions: 3,
     month: 2,
-    date: 3
+    date: 12
+  },
+  {
+    userPreferenceId: 1,
+    completed_sessions: 2,
+    month: 2,
+    date: 11
+  },
+  {
+    userPreferenceId: 2,
+    completed_sessions: 2,
+    month: 2,
+    date: 11
+  },
+  {
+    userPreferenceId: 3,
+    completed_sessions: 3,
+    month: 2,
+    date: 11
+  },
+  {
+    userPreferenceId: 4,
+    completed_sessions: 7,
+    month: 2,
+    date: 11
+  },
+  {
+    userPreferenceId: 5,
+    completed_sessions: 3,
+    month: 2,
+    date: 14
+  },
+  {
+    userPreferenceId: 1,
+    completed_sessions: 2,
+    month: 2,
+    date: 15
+  },
+  {
+    userPreferenceId: 2,
+    completed_sessions: 1,
+    month: 2,
+    date: 15
+  },
+  {
+    userPreferenceId: 3,
+    completed_sessions: 3,
+    month: 2,
+    date: 15
+  },
+  {
+    userPreferenceId: 5,
+    completed_sessions: 2,
+    month: 2,
+    date: 15
+  },
+  {
+    userPreferenceId: 4,
+    completed_sessions: 7,
+    month: 2,
+    date: 15
   }
 ];
 
