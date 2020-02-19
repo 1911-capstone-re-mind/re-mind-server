@@ -21,8 +21,8 @@ describe('User authentication', () => {
         })
         .expect(200)
 
-        expect(res.body.email).to.be.equal('cody@email.com')
-        expect(res.body.type).to.be.equal('employee')
+        expect(res.body.user.email).to.be.equal('cody@email.com')
+        expect(res.body.user.type).to.be.equal('employee')
     })
 
     it('does not create a user with incomplete information', async () => {
@@ -34,7 +34,6 @@ describe('User authentication', () => {
           lastName: 'cow',
           type: 'employee'
         })
-
         throw Error('validation was successful, but should have failed without `firstName`');
       } catch (err) {
         expect(err.message).to.contain('user.firstName cannot be null');
